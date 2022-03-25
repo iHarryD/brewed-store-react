@@ -1,0 +1,127 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--PRIMARY-BACKGROUND-CLR);
+  background-position: center;
+  background-size: contain;
+}
+
+button,
+input,
+a,
+ul {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  list-style: none;
+  outline: none;
+  text-decoration: none;
+}
+
+main {
+  min-height: 100vh;
+  padding: 1em;
+}
+
+img {
+  max-width: 100%;
+}
+
+.btn {
+  cursor: pointer;
+  font-weight: 600;
+  padding: var(--BTN-PADDING-Y) var(--BTN-PADDING-X);
+}
+
+.btn.--primary-btn {
+  background: var(--ACCENT-CLR);
+  border-radius: var(--BORDER-RADIUS);
+  color: var(--SECONDARY-FONT-CLR);
+}
+
+.btn.--secondary-btn {
+  background: #0000;
+  border: var(--BTN-BORDER-WIDTH) solid var(--SECONDARY-BTN-BORDER-CLR);
+  border-radius: var(--BORDER-RADIUS);
+  padding: calc(var(--BTN-PADDING-Y) - var(--BTN-BORDER-WIDTH))
+    calc(var(--BTN-PADDING-X) - var(--BTN-BORDER-WIDTH));
+  position: relative;
+  z-index: 1;
+}
+
+.btn.--secondary-btn::after {
+  background: var(--SECONDARY-BTN-HOVER-CLR);
+  border-radius: inherit;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: scaleY(0);
+  transition: transform var(--TRANSITION-DURATION);
+  transform-origin: top;
+  z-index: -1;
+}
+
+.btn.--secondary-btn:hover::after {
+  transform: scaleY(1);
+}
+
+.btn.--text-btn {
+  padding: 0;
+}
+
+.btn.--icon-btn {
+  animation: none;
+  aspect-ratio: 1;
+  background: var(--ICON-BTN-BACKGROUND-CLR);
+  padding: var(--ICON-BTN-PADDING);
+  border-radius: 50%;
+}
+
+.--icon-only-btn {
+  padding: 0;
+}
+
+.btn.--text-btn {
+  font-size: 0.8rem;
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.btn svg {
+  display: block;
+  margin: auto;
+  pointer-events: none;
+}
+
+.input {
+  border: var(--INPUT-BORDER-WIDTH) solid var(--INPUT-BORDER-CLR);
+  border-radius: var(--INPUT-BORDER-RADIUS);
+  padding: calc(var(--INPUT-PADDING-Y) - var(--INPUT-BORDER-WIDTH))
+    calc(var(--INPUT-PADDING-X) - var(--INPUT-BORDER-WIDTH));
+}
+
+.input-container {
+  align-items: center;
+  border: var(--INPUT-BORDER-WIDTH) solid var(--INPUT-BORDER-CLR);
+}
+
+.input-container .input {
+  border: none;
+}
+
+.prefix-icon-label {
+  padding-left: 1em;
+}

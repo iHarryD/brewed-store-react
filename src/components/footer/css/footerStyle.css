@@ -1,0 +1,47 @@
+.copyright {
+  border-top: 1px solid var(--ACCENT-CLR);
+  padding-top: 0.3em;
+  text-align: center;
+  width: 100%;
+}
+
+.footer {
+  background: var(--SECONDARY-BACKGROUND-CLR);
+  color: var(--SECONDARY-FONT-CLR);
+  gap: 2em;
+}
+
+.newsletter-sub-container {
+  gap: 0.5em;
+  width: max-content;
+}
+
+.footer-quick-links-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  width: 100%;
+}
+
+.footer-quick-links-container li {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.subscribe-btn {
+  margin-bottom: 2em;
+  position: relative;
+}
+
+.subscribe-btn::before {
+  content: "We promise to not spam your inbox.";
+  cursor: default;
+  font-size: 0.8rem;
+  font-weight: 400;
+  pointer-events: none;
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 100%;
+}
