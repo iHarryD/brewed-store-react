@@ -1,0 +1,58 @@
+.features-carousel {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.features-carousel-item {
+  height: 100%;
+  left: 100%;
+  min-width: 100%;
+  position: absolute;
+  transition: all var(--TRANSITION-DURATION);
+}
+
+.features-carousel-item img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.features-carousel-item.in-view {
+  left: 0;
+  transition: all var(--TRANSITION-DURATION);
+}
+
+.features-carousel-nav {
+  bottom: 0;
+  gap: 0.5em;
+  left: 50%;
+  right: unset;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.features-carousel-nav-btn.in-view {
+  filter: invert(1);
+}
+
+.features-carousel-overlay {
+  align-items: flex-start;
+  background: var(--BLACK-OVERLAY-CLR);
+  color: var(--PRIMARY-BACKGROUND-CLR);
+  justify-content: center;
+  padding: 5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.features-carousel-overlay .sub-heading {
+  max-width: 50%;
+}
+
+.features-carousel .--primary-btn {
+  margin-top: 1rem;
+}
