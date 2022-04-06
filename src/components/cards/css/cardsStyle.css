@@ -82,4 +82,62 @@
   border-radius: var(--BORDER-RADIUS);
   font-size: 15px;
   padding: 0 10px;
+
+.suggestions-card {
+  background: var(--SUGGESTION-CARD-BACKGROUND-CLR);
+  color: var(--SECONDARY-FONT-CLR);
+  flex-grow: 1;
+  height: var(--SUGGESTION-CARD-HEIGHT);
+  max-width: var(--SUGGESTION-CARD-MAX-WIDTH);
+  width: min(100%, var(--SUGGESTION-CARD-MIN-WIDTH));
+}
+
+.card-text-container {
+  flex-grow: 1;
+  padding: var(--SUGGESTION-CARD-Y-PADDING) var(--SUGGESTION-CARD-X-PADDING);
+}
+
+.suggestions-card .sub-heading {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid;
+}
+
+.suggestions-card .card-thumbnail-container {
+  flex-basis: 30%;
+}
+
+.card-text {
+  padding: 1rem 0;
+}
+
+.card-thumbnail-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.deal-of-the-day-card {
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.deal-of-the-day-card img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.deal-of-the-day-card::after {
+  background: #000000a1;
+  position: absolute;
+}
+
+.discount-overlay {
+  color: var(--SECONDARY-FONT-CLR);
+  font-size: 4rem;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
