@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-
 import { faEnvelope, faCopyright } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -36,7 +35,9 @@ export default function Footer() {
               "Privacy Policy",
               "Cancellation Policy",
             ].map((text) => (
-              <motion.li whileHover={footerLinksHover}>{text}</motion.li>
+              <motion.li whileHover={footerLinksHover} key={text}>
+                {text}
+              </motion.li>
             ))}
           </ul>
         </div>
@@ -44,7 +45,9 @@ export default function Footer() {
           <h3 className="sub-heading --h3">Help Desk</h3>
           <ul>
             {["FAQs", "Troubleshooting", "Get Help"].map((text) => (
-              <motion.li whileHover={footerLinksHover}>{text}</motion.li>
+              <motion.li whileHover={footerLinksHover} key={text}>
+                {text}
+              </motion.li>
             ))}
           </ul>
         </div>
@@ -52,7 +55,9 @@ export default function Footer() {
           <h3 className="sub-heading --h3">Company</h3>
           <ul>
             {["Our History", "Blog", "Contact Us"].map((text) => (
-              <motion.li whileHover={footerLinksHover}>{text}</motion.li>
+              <motion.li whileHover={footerLinksHover} key={text}>
+                {text}
+              </motion.li>
             ))}
           </ul>
         </div>

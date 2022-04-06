@@ -42,14 +42,14 @@ img {
 
 .btn.--primary-btn {
   background: var(--ACCENT-CLR);
-  border-radius: var(--BORDER-RADIUS);
+  border-radius: var(--BTN-BORDER-RADIUS);
   color: var(--SECONDARY-FONT-CLR);
 }
 
 .btn.--secondary-btn {
   background: #0000;
   border: var(--BTN-BORDER-WIDTH) solid var(--SECONDARY-BTN-BORDER-CLR);
-  border-radius: var(--BORDER-RADIUS);
+  border-radius: var(--BTN-BORDER-RADIUS);
   padding: calc(var(--BTN-PADDING-Y) - var(--BTN-BORDER-WIDTH))
     calc(var(--BTN-PADDING-X) - var(--BTN-BORDER-WIDTH));
   position: relative;
@@ -124,4 +124,28 @@ img {
 
 .prefix-icon-label {
   padding-left: 1em;
+}
+
+.slider {
+  -webkit-appearance: none;
+  background: #1f1f1f;
+  border: none;
+  border-radius: 5px;
+  height: 7px;
+  padding: 0;
+}
+
+.slider::-webkit-slider-thumb {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 #0000;
+  -webkit-appearance: none;
+  background: #fff;
+  width: 13px;
+  transition: var(--TRANSITION-DURATION);
+}
+
+.slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 var(--SLIDER-HOVER-THUMB-BORDER-SPREAD)
+    rgba(255, 255, 255, 0.274);
 }

@@ -6,8 +6,8 @@ import {
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 
-import Logo from "../../assets/logo.png";
 import "./css/headerStyle.css";
+import Logo from "../../assets/logo.png";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ export default function Header() {
           "Coffee Machines",
           "Others",
         ].map((text) => (
-          <li className="navlinks--category">
+          <li className="navlinks--category" key={text}>
             <span>{text}</span>
             <button className="btn --icon-btn">
               <svg
