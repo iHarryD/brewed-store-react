@@ -1,3 +1,88 @@
+.product-card {
+  background: var(--SECONDARY-BACKGROUND-CLR);
+  color: var(--SECONDARY-FONT-CLR);
+  cursor: default;
+  min-width: var(--PRODUCT-CARD-MIN-WIDTH);
+  max-width: var(--PRODUCT-CARD-MAX-WIDTH);
+}
+
+.card-text-container {
+  gap: 8px;
+}
+
+.product-current-price {
+  margin-inline-end: 5px;
+}
+
+.card-button-container > .btn {
+  flex-basis: 100%;
+}
+
+.card__mrp {
+  text-decoration: line-through;
+}
+
+.card-thumbnail-container img {
+  display: block;
+  height: 10rem;
+  object-fit: cover;
+  width: 100%;
+}
+
+.card-thumbnail-container {
+  position: relative;
+}
+
+.thumbnail-overlay {
+  align-items: self-end;
+  height: 100%;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+}
+
+.product-card.--out-of-stock {
+  position: relative;
+}
+
+.product-card.--out-of-stock::after {
+  background: var(--CARD-OVERLAY-CLR);
+  content: "Out of stock";
+  display: grid;
+  font-size: 1.8rem;
+  font-weight: 600;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.product-title {
+  overflow: clip;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-discount-percent {
+  color: var(--GREEN-CLR);
+}
+
+.card-rating-share-btn-container {
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.product-rating {
+  background: var(--ICON-BTN-BACKGROUND-CLR);
+  border-radius: var(--BORDER-RADIUS);
+  font-size: 15px;
+  padding: 0 10px;
+
 .suggestions-card {
   background: var(--SUGGESTION-CARD-BACKGROUND-CLR);
   color: var(--SECONDARY-FONT-CLR);

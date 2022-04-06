@@ -1,0 +1,10 @@
+.section.--product-listing {
+  align-content: start;
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--PRODUCT-CARD-MIN-WIDTH), var(--PRODUCT-CARD-MAX-WIDTH))
+  );
+  padding: 0 1rem;
+}

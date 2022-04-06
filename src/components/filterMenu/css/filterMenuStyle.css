@@ -1,0 +1,32 @@
+.aside--filter-menu {
+  background: var(--SECONDARY-BACKGROUND-CLR);
+  color: var(--SECONDARY-FONT-CLR);
+  flex-basis: 13rem;
+}
+
+.price-range-input-container {
+  gap: 5px;
+  margin: 5px 0;
+}
+
+.price-range-input-container .input {
+  width: 100%;
+}
+
+.inline-filter-container {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+
+.slider {
+  margin: calc(5px + var(--SLIDER-HOVER-THUMB-BORDER-SPREAD)) 0;
+}
+
+.current-range-value {
+  background: var(--ACCENT-CLR);
+  border-radius: var(--BORDER-RADIUS);
+  font-weight: 500;
+  padding: 0 10px;
+  margin-left: auto;
+}
