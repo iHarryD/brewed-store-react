@@ -1,0 +1,48 @@
+.login-signup-outer-container {
+  box-shadow: 5px 5px 5px 0 var(--AUTH-BOX-SHADOW-CLR);
+}
+
+.login-box-container {
+  background: var(--SECONDARY-BACKGROUND-CLR);
+  color: var(--SECONDARY-FONT-CLR);
+}
+
+.login-box-container .section {
+  padding: 3rem;
+}
+
+.login-utilities-container {
+  display: flex;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.login-box-container .btn,
+.login-box-container .input {
+  width: 100%;
+}
+
+.login-utilities-container .btn:nth-child(1) {
+  text-align: start;
+}
+
+.login-utilities-container .btn:nth-child(2) {
+  text-align: end;
+}
+
+.btn.--with-facebook {
+  background: var(--FACEBOOK-CLR);
+}
+
+.btn.--with-google {
+  background: var(--GOOGLE-CLR);
+  color: #000;
+}
+
+.btn.--with-apple {
+  background: var(--APPLE-CLR);
+}
+
+.signup-link {
+  margin: auto;
+}

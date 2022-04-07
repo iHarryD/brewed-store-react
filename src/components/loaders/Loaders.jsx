@@ -12,7 +12,7 @@ export function FullPageLoader() {
   );
 }
 
-export function ButtonLoader() {
+export function ButtonLoader({ color }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ export function ButtonLoader() {
         cx="84"
         cy="50"
         r="10"
-        fill="#17374f"
+        fill={color}
         data-darkreader-inline-fill=""
       >
         <animate
@@ -47,7 +47,7 @@ export function ButtonLoader() {
           dur="2.272727272727273s"
           calcMode="discrete"
           keyTimes="0;0.25;0.5;0.75;1"
-          values="#17374f;#17374f;#17374f;#17374f;#17374f"
+          values={color}
           begin="0s"
         ></animate>
       </circle>
@@ -55,7 +55,7 @@ export function ButtonLoader() {
         cx="16"
         cy="50"
         r="10"
-        fill="#17374f"
+        fill={color}
         data-darkreader-inline-fill=""
       >
         <animate
@@ -83,7 +83,7 @@ export function ButtonLoader() {
         cx="50"
         cy="50"
         r="10"
-        fill="#17374f"
+        fill={color}
         data-darkreader-inline-fill=""
       >
         <animate
@@ -111,7 +111,7 @@ export function ButtonLoader() {
         cx="84"
         cy="50"
         r="10"
-        fill="#17374f"
+        fill={color}
         data-darkreader-inline-fill=""
       >
         <animate
@@ -139,7 +139,7 @@ export function ButtonLoader() {
         cx="16"
         cy="50"
         r="10"
-        fill="#17374f"
+        fill={color}
         data-darkreader-inline-fill=""
       >
         <animate
