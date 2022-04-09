@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import "./css/filterMenuStyle.css";
 import { useFilter } from "../../contexts/filterContext";
@@ -69,7 +68,7 @@ export default function FilterMenu({ allBrands }) {
       <div>
         <p>Filter by brand</p>
         {allBrands.map((brand) => (
-          <div className="inline-filter-container" key={uuidv4()}>
+          <div className="inline-filter-container" key={`filter-menu-${brand}`}>
             <input
               className="input"
               type="checkbox"

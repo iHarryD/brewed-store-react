@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 import "./css/wishlistStyle.css";
 import { useWishlist } from "../../contexts/wishlistContext";
@@ -40,7 +39,7 @@ export default function Wishlist() {
                 imgSrc={product.img}
                 imgAlt={product.name}
                 inStockQuantity={product.inStockQuantity}
-                key={uuidv4()}
+                key={`wishlist-${product.name}`}
                 productID={product._id}
                 isInWishlist={true}
                 wishlistSetter={setWishlist}

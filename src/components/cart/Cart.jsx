@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 import "./css/cartStyle.css";
 import { CartCard } from "../cards/Cards";
@@ -42,7 +41,7 @@ export default function Cart() {
                   }
                   wishlistSetter={setWishlist}
                   isInWishlist={isInWishlist}
-                  key={uuidv4()}
+                  key={`cart-${currentCartItem.name}`}
                 />
               );
             })}

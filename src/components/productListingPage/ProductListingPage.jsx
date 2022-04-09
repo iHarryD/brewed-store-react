@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 import "./css/productListingPageStyle.css";
 import { ProductCard } from "../cards/Cards";
@@ -40,7 +39,7 @@ export default function ProductListingPage() {
                 imgSrc={product.img}
                 imgAlt={product.name}
                 inStockQuantity={product.inStockQuantity}
-                key={uuidv4()}
+                key={product.name}
                 productID={product._id}
                 isInWishlist={isInWishList}
                 wishlistSetter={setWishlist}

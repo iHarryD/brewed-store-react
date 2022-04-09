@@ -7,12 +7,16 @@ export default function skuHandler(productsArray) {
     const toBePrice = !!product.sku.length
       ? product.sku[0].price
       : product.price;
+    const toBeStockQuantity = !!product.sku.length
+      ? product.sku[0].inStockQuantity
+      : product.inStockQuantity;
     const image = product.img ? product.img : ElsePic;
     return {
       ...product,
       price: toBePrice,
       currentPrice: toBePrice - Math.floor((toBePrice / 100) * num),
       discountPercent: num,
+      inStockQuantity: toBeStockQuantity,
       img: image,
     };
   });
