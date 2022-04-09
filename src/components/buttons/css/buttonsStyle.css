@@ -1,0 +1,9 @@
+.btn.--is-loading {
+  cursor: default;
+  padding: 0;
+  pointer-events: none;
+}
+
+.btn-with-loader {
+  height: 2.3rem;
+}

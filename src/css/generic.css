@@ -149,3 +149,30 @@ img {
   box-shadow: 0 0 0 var(--SLIDER-HOVER-THUMB-BORDER-SPREAD)
     rgba(255, 255, 255, 0.274);
 }
+
+.response-text {
+  margin: 0 auto 5px;
+  max-width: 30ch;
+  overflow-x: clip;
+  text-overflow: ellipsis;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.response-text.error {
+  color: var(--RED-CLR);
+}
+
+.response-text.success {
+  color: var(--GREEN-CLR);
+}
+
+.label.mandatory-field {
+  position: relative;
+}
+
+.label.mandatory-field::after {
+  content: "*";
+  color: var(--RED-CLR);
+  position: absolute;
+}

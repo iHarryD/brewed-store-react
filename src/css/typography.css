@@ -33,3 +33,7 @@ body {
 .--bold-700 {
   font-weight: 700;
 }
+
+.--centered-text {
+  text-align: center;
+}

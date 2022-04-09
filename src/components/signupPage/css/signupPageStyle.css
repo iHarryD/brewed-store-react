@@ -1,0 +1,62 @@
+/* lOGIN-SIGNUP-OUTER-CONTAINER */
+
+.login-signup-outer-container {
+  box-shadow: 5px 5px 5px 0 var(--LOGIN-SIGNUP-OUTER-BOX-SHADOW-CLR);
+}
+
+/* SIGNUP-BOX */
+
+.signup-box {
+  padding: 3rem;
+  background: var(--SECONDARY-BACKGROUND-CLR);
+  color: var(--SECONDARY-FONT-CLR);
+}
+
+/* SIGNUP-BOX_SIGNUP-FORM */
+
+.signup-box form {
+  gap: 2rem;
+}
+
+/* SIGNUP-FORM_INPUT-CONTAINERS */
+
+.input-column {
+  display: flex;
+  gap: 1rem;
+}
+
+.input-column > .input-container {
+  flex-grow: 1;
+}
+
+.input-column .input {
+  width: 100%;
+}
+
+.--input-animation {
+  position: relative;
+}
+
+.--input-animation .label {
+  background: var(--SECONDARY-BACKGROUND-CLR);
+  color: var(--LABEL-CLR-INPUT-ANIMATION);
+  padding: 0 5px;
+  position: absolute;
+  left: calc(var(--INPUT-PADDING-X) - 5px);
+  bottom: 0;
+  pointer-events: none;
+  transition: all 150ms;
+  transform: translateY(-24%);
+}
+
+.--input-animation > .input:focus ~ .label {
+  transform: translateY(-100%);
+}
+
+.--input-animation > .input.animated ~ .label {
+  transform: translateY(-100%);
+}
+
+.login-link {
+  margin: auto;
+}

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
@@ -8,9 +8,11 @@ import {
 
 import "./css/headerStyle.css";
 import Logo from "../../assets/logo.png";
+import { useAuth } from "../../contexts/authContext";
 
 export default function Header() {
   const navigate = useNavigate();
+  const { isLoggedIn, logout } = useAuth();
   return (
     <header>
       <nav className="navbar --horizontal-flex --centered-flex">
@@ -33,17 +35,25 @@ export default function Header() {
             <FontAwesomeIcon icon={faCartShopping} />
           </button>
         </div>
-        <div className="--horizontal-flex --centered-flex --has-gap">
-          <button
-            className="btn --primary-btn --has-hover-overlay"
-            onClick={() => {}}
-          >
-            Log In
-          </button>
-          <button className="btn --secondary-btn" onClick={() => {}}>
-            Sign Up
-          </button>
-        </div>
+        {isLoggedIn.status ? (
+          <div className="--horizontal-flex --has-gap --centered-flex">
+            <p>{`Hello, ${isLoggedIn.userName}`}</p>
+            <button className="btn --secondary-btn" onClick={() => logout()}>
+              Log out
+            </button>
+          </div>
+        ) : (
+          <div className="--horizontal-flex --centered-flex --has-gap">
+            <Link to="login">
+              <button className="btn --primary-btn --has-hover-overlay">
+                Log In
+              </button>
+            </Link>
+            <Link to="signup">
+              <button className="btn --secondary-btn">Sign Up</button>
+            </Link>
+          </div>
+        )}
       </nav>
       <ul className="navbar--category --horizontal-flex --bold-700">
         {[

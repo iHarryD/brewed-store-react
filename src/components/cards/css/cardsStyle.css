@@ -22,11 +22,9 @@
   text-decoration: line-through;
 }
 
-.card-thumbnail-container img {
+.product-card .card-thumbnail-container img {
   display: block;
   height: 10rem;
-  object-fit: cover;
-  width: 100%;
 }
 
 .card-thumbnail-container {
@@ -82,6 +80,7 @@
   border-radius: var(--BORDER-RADIUS);
   font-size: 15px;
   padding: 0 10px;
+}
 
 .suggestions-card {
   background: var(--SUGGESTION-CARD-BACKGROUND-CLR);
@@ -92,7 +91,7 @@
   width: min(100%, var(--SUGGESTION-CARD-MIN-WIDTH));
 }
 
-.card-text-container {
+.suggestions-card .card-text-container {
   flex-grow: 1;
   padding: var(--SUGGESTION-CARD-Y-PADDING) var(--SUGGESTION-CARD-X-PADDING);
 }

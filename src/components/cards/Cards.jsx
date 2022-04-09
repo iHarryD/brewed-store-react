@@ -64,6 +64,8 @@ export function ProductCard({
         </div>
       </div>
     </motion.div>
+  );
+}
 
 export function SuggestionCard(props) {
   return (
