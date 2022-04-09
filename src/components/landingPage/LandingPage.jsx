@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import CoffeeBean1 from "../../assets/coffee-bean-1.jpg";
 import CoffeeBean2 from "../../assets/coffee-bean-2.jpeg";
@@ -13,8 +13,6 @@ import { featuresData } from "../../data/featuresData";
 import FeaturesCarousel from "./FeaturesCarousel";
 
 export default function LandingPage() {
-  const navigate = useNavigate();
-
   return (
     <main className="main --landing-page --verticle-flex">
       <section>
@@ -89,12 +87,11 @@ export default function LandingPage() {
           ))}
         </div>
       </section>
-      <button
-        className="btn --primary-btn --has-hover-overlay"
-        onClick={() => navigate("/all-products")}
-      >
-        Show all products
-      </button>
+      <Link to="/all-products">
+        <button className="btn --primary-btn --has-hover-overlay --width-100">
+          Show all products
+        </button>
+      </Link>
     </main>
   );
 }

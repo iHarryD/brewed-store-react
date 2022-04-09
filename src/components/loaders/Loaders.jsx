@@ -3,13 +3,17 @@ import ReactDOM from "react-dom";
 import "./css/loaderStyle.css";
 import BodyBackdrop from "../bodyBackdrop/BodyBackdrop";
 
-export function FullPageLoader() {
+export function SpinnerLoaderWithBackdrop() {
   return ReactDOM.createPortal(
     <BodyBackdrop>
-      <div className="full-page-loader"></div>
+      <div className="spinner-loader --with-backdrop"></div>
     </BodyBackdrop>,
     document.getElementById("portal")
   );
+}
+
+export function SpinnerLoader() {
+  return <div className="spinner-loader"></div>;
 }
 
 export function ButtonLoader({ color }) {

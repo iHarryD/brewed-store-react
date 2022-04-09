@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "./css/signupPageStyle.css";
 import { ButtonWithLoader } from "../buttons/Buttons";
@@ -13,6 +13,8 @@ export default function SignupPage() {
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
   const { signup, signingIn, serverResponse } = SignupLogic();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function inputAnimationHandler(e) {
     e.target.value
@@ -143,9 +145,17 @@ export default function SignupPage() {
               />
             </div>
           </form>
-          <Link to="/login" className="login-link">
-            <button className="btn --text-btn">Already a user? Log In</button>
-          </Link>
+
+          <button
+            className="btn --text-btn"
+            onClick={() =>
+              navigate("/login", {
+                state: { previousRoute: location.pathname },
+              })
+            }
+          >
+            Already a user? Log In
+          </button>
         </div>
       </div>
     </main>

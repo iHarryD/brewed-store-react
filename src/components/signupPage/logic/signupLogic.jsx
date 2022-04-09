@@ -2,21 +2,27 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import useServerResponse from "../../../hooks/useServerResponse";
+
 export default function SignupLogic() {
   const navigate = useNavigate();
   const [signingIn, setSigningIn] = useState(false);
-  const [serverResponse, setServerResponse] = useState({
-    type: null,
-    text: null,
-  });
+  const { serverResponse, setServerResponse } = useServerResponse();
 
-  async function signup(data) {
-    if (!data.firstName || !data.lastName || !data.email || !data.password)
+  async function signup({
+    firstName,
+    lastName,
+    email,
+    phone,
+    password,
+    confirmPassword,
+  }) {
+    if (!firstName || !lastName || !email || !password)
       return setServerResponse({
         type: "error",
-        text: "Kindly fill and the mandatory fields.",
+        text: "Kindly fill all the mandatory fields.",
       });
-    if (data.password !== data.confirmPassword)
+    if (password !== confirmPassword)
       return setServerResponse({
         type: "error",
         text: "Passwords do not match.",
@@ -26,11 +32,11 @@ export default function SignupLogic() {
       const res = await axios.post(
         "https://b-brewed-store.vercel.app/api/auth/signup",
         {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          phone: data.phone,
-          email: data.email,
-          password: data.password,
+          firstName: firstName,
+          lastName: lastName,
+          phone: phone,
+          email: email,
+          password: password,
         }
       );
       setServerResponse({
