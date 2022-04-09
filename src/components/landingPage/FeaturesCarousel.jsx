@@ -39,7 +39,6 @@ export default function FeaturesCarousel(props) {
           className={`features-carousel-item ${
             inViewIndex === index ? "in-view" : ""
           }`}
-          key={`features-carousel-${item}`}
         >
           <img src={item.imgSrc} alt={item.imgAlt} />
           <div className="features-carousel-overlay --verticle-flex">
@@ -58,7 +57,6 @@ export default function FeaturesCarousel(props) {
             }`}
             value={index}
             onClick={(e) => carouselNavBtnHandler(e)}
-            key={`features-carousel-btn-${item}`}
           >
             <FontAwesomeIcon icon={faCircle} />
           </button>

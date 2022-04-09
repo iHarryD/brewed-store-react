@@ -134,8 +134,19 @@ export function CartCard({
   wishlistBtnHandler,
   quantity,
 }) {
+  // const cartCardVariant = {
+  //   initial: { x: 50 },
+  //   final: { x: 0 },
+  // };
   return (
-    <div className="product-card --cart-card --horizontal-flex">
+    <motion.div
+      layout
+      // variants={cartCardVariant}
+      // initial="initial"
+      // animate="final"
+      exit={{ opacity: 0, x: "-100%" }}
+      className="product-card --cart-card --horizontal-flex"
+    >
       <div className="card-thumbnail-container carousel">
         <img src={imgSrc} alt={imgAlt} />
       </div>
@@ -183,6 +194,6 @@ export function CartCard({
           <FontAwesomeIcon icon={faClose} />
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }

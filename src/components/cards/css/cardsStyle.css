@@ -142,7 +142,7 @@
 }
 
 .product-card.--cart-card {
-  max-width: var(--CART-PRODUCT-CARD-MAX-WIDTH);
+  max-width: unset;
   min-width: var(--CART-PRODUCT-CARD-MIN-WIDTH);
   height: var(--CART-PRODUCT-CARD-HEIGHT);
   position: relative;
@@ -170,4 +170,9 @@
   background: transparent;
   padding: 0;
   top: 1rem;
+  width: 1.5rem;
+}
+
+.btn.delete-from-cart-btn:hover {
+  background: var(--ACCENT-CLR);
 }

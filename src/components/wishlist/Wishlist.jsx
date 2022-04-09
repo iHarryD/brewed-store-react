@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import "./css/wishlistStyle.css";
 import { useWishlist } from "../../contexts/wishlistContext";
@@ -15,8 +16,16 @@ export default function Wishlist() {
   const { allProducts } = useProduct();
   const navigate = useNavigate();
 
+  const wishlistVariant = {
+    initial: { opacity: 0, x: -150 },
+    final: {
+      opacity: 1,
+      x: 0,
+    },
+  };
+
   return (
-    <main>
+    <motion.main variants={wishlistVariant} initial="initial" animate="final">
       <div>
         <h2 className="sub-heading wishlist-heading --h2">Wishlist</h2>
       </div>
@@ -60,6 +69,6 @@ export default function Wishlist() {
           </button>
         </Link>
       </div>
-    </main>
+    </motion.main>
   );
 }
