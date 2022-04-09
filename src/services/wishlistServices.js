@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const wishlistAxiosInstance = axios.create({
-  baseURL: "http://127.0.0.1:3001/api/wishlist",
+  baseURL: "https://b-brewed-store.vercel.app/api/wishlist",
   headers: {
     "auth-token": localStorage.getItem("auth-token"),
   },

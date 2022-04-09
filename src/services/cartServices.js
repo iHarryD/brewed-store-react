@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const cartAxiosInstance = axios.create({
-  baseURL: "http://127.0.0.1:3001/api/cart",
+  baseURL: "https://b-brewed-store.vercel.app/api/cart",
   headers: {
     "auth-token": localStorage.getItem("auth-token"),
   },
 });
 
 const wishlistAxiosInstance = axios.create({
-  baseURL: "http://127.0.0.1:3001/api/wishlist",
+  baseURL: "https://b-brewed-store.vercel.app/api/wishlist",
   headers: {
     "auth-token": localStorage.getItem("auth-token"),
   },
