@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 import CoffeeBean1 from "../../assets/coffee-bean-1.jpg";
 import CoffeeBean2 from "../../assets/coffee-bean-2.jpeg";
@@ -83,6 +84,7 @@ export default function LandingPage() {
               btnText={item.btnText}
               imgSrc={item.imgSrc}
               imgAlt={item.imgAlt}
+              key={uuidv4()}
             />
           ))}
         </div>

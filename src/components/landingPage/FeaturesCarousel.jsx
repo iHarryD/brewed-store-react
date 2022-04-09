@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import { v4 as uuidv4 } from "uuid";
 
 import "./css/featuresCarouselStyle.css";
 
@@ -39,6 +40,7 @@ export default function FeaturesCarousel(props) {
           className={`features-carousel-item ${
             inViewIndex === index ? "in-view" : ""
           }`}
+          key={uuidv4()}
         >
           <img src={item.imgSrc} alt={item.imgAlt} />
           <div className="features-carousel-overlay --verticle-flex">
@@ -57,6 +59,7 @@ export default function FeaturesCarousel(props) {
             }`}
             value={index}
             onClick={(e) => carouselNavBtnHandler(e)}
+            key={uuidv4()}
           >
             <FontAwesomeIcon icon={faCircle} />
           </button>

@@ -5,6 +5,7 @@ import {
   faHeart,
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
+import { v4 as uuidv4 } from "uuid";
 
 import "./css/headerStyle.css";
 import Logo from "../../assets/logo.png";
@@ -66,7 +67,7 @@ export default function Header() {
           "Coffee Machines",
           "Others",
         ].map((text) => (
-          <li className="navlinks--category" key={text}>
+          <li className="navlinks--category" key={uuidv4()}>
             <span>{text}</span>
             <button className="btn --icon-btn">
               <svg

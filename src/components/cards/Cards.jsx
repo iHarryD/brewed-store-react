@@ -135,7 +135,7 @@ export function CartCard({
   quantity,
 }) {
   return (
-    <div layout className="product-card --cart-card --horizontal-flex">
+    <div className="product-card --cart-card --horizontal-flex">
       <div className="card-thumbnail-container carousel">
         <img src={imgSrc} alt={imgAlt} />
       </div>
