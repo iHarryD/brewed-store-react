@@ -28,10 +28,13 @@ export default function Header() {
           </button>
         </div>
         <div className="icon-btn-container --horizontal-flex --centered-flex">
-          <button className="btn --icon-btn" onClick={() => {}}>
+          <button
+            className="btn --icon-btn"
+            onClick={() => navigate("/wishlist")}
+          >
             <FontAwesomeIcon icon={faHeart} />
           </button>
-          <button className="btn --icon-btn" onClick={() => {}}>
+          <button className="btn --icon-btn" onClick={() => navigate("/cart")}>
             <FontAwesomeIcon icon={faCartShopping} />
           </button>
         </div>
@@ -63,7 +66,7 @@ export default function Header() {
           "Coffee Machines",
           "Others",
         ].map((text) => (
-          <li className="navlinks--category" key={text}>
+          <li className="navlinks--category" key={`header-${text}`}>
             <span>{text}</span>
             <button className="btn --icon-btn">
               <svg

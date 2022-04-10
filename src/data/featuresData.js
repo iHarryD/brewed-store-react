@@ -7,7 +7,7 @@ export const featuresData = [
   {
     imgSrc: FeatureImage1,
     imgAlt: "coffee",
-    text: "Experince premium coffee.",
+    text: "Experience premium coffee.",
     btnText: "Buy Now",
   },
   {

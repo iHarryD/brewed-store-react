@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
   function logout() {
     localStorage.removeItem("logged-in");
     localStorage.removeItem("user-name");
-    localStorage.removeItem("encodedToken");
+    localStorage.removeItem("auth-token");
     setIsLoggedIn({
       status: false,
       userName: null,

@@ -1,14 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/authContext";
+import useServerResponse from "../../../hooks/useServerResponse";
 
 export default function LoginLogic() {
   const [loggingIn, setLogginIn] = useState(false);
-  const [serverResponse, setServerResponse] = useState({
-    type: null,
-    text: null,
-  });
+  const { serverResponse, setServerResponse } = useServerResponse();
   const { setIsLoggedIn } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   async function login(data) {
     if (!data.email || !data.password)
       return setServerResponse({
@@ -28,10 +30,17 @@ export default function LoginLogic() {
         type: "success",
         text: res.data.message,
       });
-      localStorage.setItem("encodedToken", res.data.token);
+      localStorage.setItem("auth-token", res.data.token);
       localStorage.setItem("logged-in", true);
       localStorage.setItem("user-name", res.data.firstName);
       setIsLoggedIn({ status: true, userName: res.data.firstName });
+      setTimeout(() => {
+        if (location.state?.previousRoute === "/signup") {
+          navigate("/");
+        } else {
+          navigate(-1);
+        }
+      }, 1000);
     } catch (err) {
       setServerResponse({
         type: "error",

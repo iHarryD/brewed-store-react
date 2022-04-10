@@ -68,7 +68,7 @@ export default function FilterMenu({ allBrands }) {
       <div>
         <p>Filter by brand</p>
         {allBrands.map((brand) => (
-          <div className="inline-filter-container" key={brand}>
+          <div className="inline-filter-container" key={`filter-menu-${brand}`}>
             <input
               className="input"
               type="checkbox"

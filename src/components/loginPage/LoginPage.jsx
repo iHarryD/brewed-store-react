@@ -6,6 +6,7 @@ import "./css/loginPageStyle.css";
 import LoginLogic from "./logic/loginLogic";
 
 export default function LoginPage() {
+  const testingCredentials = { email: "test@brewed.store", password: "123456" };
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const { login, loggingIn, serverResponse } = LoginLogic();
@@ -43,6 +44,16 @@ export default function LoginPage() {
                 ref={passwordInputRef}
               />
               <div>
+                <button
+                  className="btn --text-btn --has-hover-overlay"
+                  onClick={() => {
+                    emailInputRef.current.value = testingCredentials.email;
+                    passwordInputRef.current.value =
+                      testingCredentials.password;
+                  }}
+                >
+                  Use testing credentials
+                </button>
                 <p
                   className={`response-text --small-text ${
                     serverResponse?.type ? serverResponse.type : ""

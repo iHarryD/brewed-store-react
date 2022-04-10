@@ -10,7 +10,11 @@
   z-index: 1;
 }
 
-.toast.--error {
+.error-toast {
   background: var(--RED-CLR);
   color: #fff;
+}
+
+.success-toast {
+  background: var(--GREEN-CLR);
 }
