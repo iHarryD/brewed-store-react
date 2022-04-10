@@ -1,16 +1,9 @@
-import axios from "axios";
-
-const wishlistAxiosInstance = axios.create({
-  baseURL: "https://b-brewed-store.vercel.app/api/wishlist",
-  headers: {
-    "auth-token": localStorage.getItem("auth-token"),
-  },
-});
+import wishlistAxiosInstance from "./axiosInstances/wishlistAxiosInstance";
 
 export async function GetWishlist(wishlistSetter) {
   if (!localStorage.getItem("logged-in")) return wishlistSetter([]);
   try {
-    const res = await wishlistAxiosInstance.get("");
+    const res = await wishlistAxiosInstance().get("");
     if (Array.isArray(res.data)) {
       wishlistSetter(res.data);
     }
@@ -21,7 +14,7 @@ export async function GetWishlist(wishlistSetter) {
 
 export async function AddToWishlist(wishlistSetter, productID) {
   try {
-    const res = await wishlistAxiosInstance.put("/add", { productID });
+    const res = await wishlistAxiosInstance().put("/add", { productID });
     if (Array.isArray(res.data)) {
       wishlistSetter(res.data);
     }
@@ -32,7 +25,7 @@ export async function AddToWishlist(wishlistSetter, productID) {
 
 export async function DeleteFromWishlist(wishlistSetter, productID) {
   try {
-    const res = await wishlistAxiosInstance.put("/delete", { productID });
+    const res = await wishlistAxiosInstance().put("/delete", { productID });
     if (Array.isArray(res.data)) {
       wishlistSetter(res.data);
     }
