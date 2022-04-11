@@ -46,3 +46,8 @@
 .signup-link {
   margin: auto;
 }
+
+.show-password-btn {
+  cursor: pointer;
+  padding-inline-end: 10px;
+}

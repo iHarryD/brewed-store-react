@@ -2,7 +2,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import "./css/cartStyle.css";
-import { CartCard } from "../cards/Cards";
+import { CartCard } from "../../components/cards/Cards";
 import { useCart } from "../../contexts/cartContext";
 import { useWishlist } from "../../contexts/wishlistContext";
 import { DeleteFromCart, MoveToWishlist } from "../../services/cartServices";
