@@ -3,7 +3,7 @@ import axios from "axios";
 import cartAxiosInstance from "./axiosInstances/cartAxiosInstance";
 import wishlistAxiosInstance from "./axiosInstances/wishlistAxiosInstance";
 
-export async function GetCart(cartSetter) {
+export async function getCart(cartSetter) {
   if (!localStorage.getItem("logged-in")) return cartSetter([]);
   try {
     const res = await cartAxiosInstance().get("");
@@ -15,7 +15,7 @@ export async function GetCart(cartSetter) {
   }
 }
 
-export async function AddToCart(cartSetter, productID) {
+export async function addToCart(cartSetter, productID) {
   try {
     const res = await cartAxiosInstance().put("/add", { productID });
     if (Array.isArray(res.data)) {
@@ -26,7 +26,7 @@ export async function AddToCart(cartSetter, productID) {
   }
 }
 
-export async function DeleteFromCart(cartSetter, productID) {
+export async function deleteFromCart(cartSetter, productID) {
   try {
     const res = await cartAxiosInstance().put("/delete", { productID });
     if (Array.isArray(res.data)) {
@@ -37,22 +37,19 @@ export async function DeleteFromCart(cartSetter, productID) {
   }
 }
 
-export async function MoveToWishlist(cartSetter, wishlistSetter, productID) {
+export async function moveToWishlist(cartSetter, wishlistSetter, productID) {
   try {
-    const [res1, res2] = await axios.all([
-      cartAxiosInstance().put("/delete", { productID }),
-      wishlistAxiosInstance().put("/add", { productID }),
-    ]);
-    console.log("done");
+    const res1 = await cartAxiosInstance().put("/delete", { productID });
     if (Array.isArray(res1.data)) {
       cartSetter(res1.data);
     }
+    const res2 = await wishlistAxiosInstance().put("/add", { productID });
     if (Array.isArray(res2.data)) {
       wishlistSetter(res2.data);
     }
-    console.log(res1);
-    console.lof(res2);
   } catch (err) {
     console.log(err);
   }
 }
+
+// axios.all [bug: to solve]

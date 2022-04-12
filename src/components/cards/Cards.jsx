@@ -148,7 +148,6 @@ export function CartCard({
   productID,
   cartSetter,
   deleteFromCart,
-  moveToWishlist,
   wishlistSetter,
   isInWishlist,
   wishlistBtnHandler,

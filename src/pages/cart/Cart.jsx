@@ -5,7 +5,7 @@ import "./css/cartStyle.css";
 import { CartCard } from "../../components/cards/Cards";
 import { useCart } from "../../contexts/cartContext";
 import { useWishlist } from "../../contexts/wishlistContext";
-import { DeleteFromCart, MoveToWishlist } from "../../services/cartServices";
+import { deleteFromCart, moveToWishlist } from "../../services/cartServices";
 import CartLogic from "./logic/CartLogic";
 
 export default function Cart() {
@@ -37,8 +37,7 @@ export default function Cart() {
                   <AnimatePresence>
                     {cartDisplay.map((currentCartItem) => {
                       const isInWishlist = wishlist.find(
-                        (currentItem) =>
-                          currentCartItem.productID === currentItem
+                        (currentItem) => currentCartItem._id === currentItem
                       );
                       return (
                         <CartCard
@@ -50,11 +49,11 @@ export default function Cart() {
                           imgAlt={currentCartItem.name}
                           productID={currentCartItem._id}
                           cartSetter={setCart}
-                          deleteFromCart={DeleteFromCart}
-                          wishlistBtnHandler={() =>
+                          deleteFromCart={deleteFromCart}
+                          wishlistBtnHandler={
                             isInWishlist
-                              ? navigate("/wishlist")
-                              : MoveToWishlist
+                              ? () => navigate("/wishlist")
+                              : moveToWishlist
                           }
                           wishlistSetter={setWishlist}
                           isInWishlist={isInWishlist}

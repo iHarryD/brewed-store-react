@@ -49,5 +49,6 @@
 
 .show-password-btn {
   cursor: pointer;
+  font-size: 0.8rem;
   padding-inline-end: 10px;
 }
