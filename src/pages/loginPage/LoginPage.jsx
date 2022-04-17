@@ -1,18 +1,30 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ButtonWithLoader } from "../buttons/Buttons";
+import { motion } from "framer-motion";
 
 import "./css/loginPageStyle.css";
+import { ButtonWithLoader } from "../../components/buttons/Buttons";
 import LoginLogic from "./logic/loginLogic";
+import { loginSignupVariant } from "../../data/loginSignupVariant";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-regular-svg-icons";
 
 export default function LoginPage() {
   const testingCredentials = { email: "test@brewed.store", password: "123456" };
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const [isShowingPassword, setIsShowingPassword] = useState(false);
   const { login, loggingIn, serverResponse } = LoginLogic();
   return (
     <main className="main --login-signup --verticle-flex --centered-flex">
-      <div className="login-signup-outer-container">
+      <motion.div
+        variants={loginSignupVariant}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition="transition"
+        className="login-signup-outer-container"
+      >
         <div className="login-box-container --horizontal-flex">
           <section className="section --login-with --verticle-flex --centered-flex --has-gap">
             <button className="btn --with-google --primary-btn --has-hover-overlay">
@@ -35,14 +47,23 @@ export default function LoginPage() {
                 placeholder="Email"
                 ref={emailInputRef}
               />
-              <input
-                className="input"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                ref={passwordInputRef}
-              />
+              <div className="input-container --horizontal-flex --centered-flex">
+                <input
+                  className="input"
+                  type={isShowingPassword ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  ref={passwordInputRef}
+                />
+                <button
+                  className="show-password-btn"
+                  onMouseDown={() => setIsShowingPassword(true)}
+                  onMouseUp={() => setIsShowingPassword(false)}
+                >
+                  <FontAwesomeIcon icon={faEye} />
+                </button>
+              </div>
               <div>
                 <button
                   className="btn --text-btn --has-hover-overlay"
@@ -62,14 +83,14 @@ export default function LoginPage() {
                   {serverResponse?.text}
                 </p>
                 <ButtonWithLoader
-                  loading={loggingIn}
+                  loadingState={loggingIn}
                   text="Login"
                   loaderColor="#fff"
                   clickHandler={() => {
-                    login({
-                      email: emailInputRef.current.value,
-                      password: passwordInputRef.current.value,
-                    });
+                    login(
+                      emailInputRef.current.value,
+                      passwordInputRef.current.value
+                    );
                   }}
                 />
               </div>
@@ -83,7 +104,7 @@ export default function LoginPage() {
             </Link>
           </section>
         </div>
-      </div>
+      </motion.div>
     </main>
   );
 }

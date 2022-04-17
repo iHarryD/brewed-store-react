@@ -23,6 +23,7 @@ export default function CartLogic() {
         const product = allProducts.find(
           (product) => currentCartItem.productID === product._id
         );
+        console.log(product);
         return (totalPrice += product.currentPrice);
       }, 0)
     );

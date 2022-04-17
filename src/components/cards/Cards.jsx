@@ -28,9 +28,21 @@ export function ProductCard({
   cartClickHandler,
   cartSetter,
 }) {
+  const cardHoverAnimations = {
+    borderRadius: "14px",
+  };
+  const imgHoverAnimations = {
+    scale: 1.1,
+  };
+  const imgHoverTransition = {
+    duration: 0.5,
+    ease: [0.43, 0.13, 0.23, 0.96],
+  };
+
   return (
     <motion.div
       layout
+      whileHover={cardHoverAnimations}
       className={`product-card --verticle-flex ${
         inStockQuantity <= 0 ? "--out-of-stock" : ""
       }`}
@@ -38,7 +50,10 @@ export function ProductCard({
       <div className="card-thumbnail-container carousel">
         <div className="thumbnail-overlay --verticle-flex --has-padding">
           <button
-            className="btn --icon-btn"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            className="btn --icon-btn --z-index-1"
             onClick={() => wishlistClickHandler(wishlistSetter, productID)}
           >
             <FontAwesomeIcon
@@ -46,7 +61,7 @@ export function ProductCard({
               color="#FE251B"
             />
           </button>
-          <div className="card-rating-share-btn-container --horizontal-flex">
+          <div className="card-rating-share-btn-container --horizontal-flex  --z-index-1">
             <div className="product-rating --bold-500">
               <FontAwesomeIcon icon={faStar} /> <span>{rating}</span>
             </div>
@@ -55,7 +70,12 @@ export function ProductCard({
             </button>
           </div>
         </div>
-        <img src={imgSrc} alt={imgAlt} />
+        <motion.img
+          transition={imgHoverTransition}
+          whileHover={imgHoverAnimations}
+          src={imgSrc}
+          alt={imgAlt}
+        />
       </div>
       <div className="card-text-container --verticle-flex --has-padding">
         <p className="product-title --bold-500">{title}</p>
@@ -128,7 +148,6 @@ export function CartCard({
   productID,
   cartSetter,
   deleteFromCart,
-  moveToWishlist,
   wishlistSetter,
   isInWishlist,
   wishlistBtnHandler,

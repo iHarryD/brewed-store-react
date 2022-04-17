@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 import CoffeeBean1 from "../../assets/coffee-bean-1.jpg";
 import CoffeeBean2 from "../../assets/coffee-bean-2.jpeg";
@@ -9,7 +8,7 @@ import LoyaltyCard2 from "../../assets/coffee-loyalty-card-2.jpg";
 import LoyaltyCard3 from "../../assets/coffee-loyalty-card-3.jpg";
 
 import "./css/landingPageStyle.css";
-import { DealOfTheDayCard, SuggestionCard } from "../cards/Cards";
+import { DealOfTheDayCard, SuggestionCard } from "../../components/cards/Cards";
 import { featuresData } from "../../data/featuresData";
 import FeaturesCarousel from "./FeaturesCarousel";
 
@@ -26,6 +25,11 @@ export default function LandingPage() {
             className="loyalty-card-container --left"
             initial={{
               scale: 0.8,
+              x: "100%",
+            }}
+            whileInView={{
+              x: 0,
+              transition: { delay: 0.2, stiffness: 150, duration: 0.5 },
             }}
             drag="x"
             dragConstraints={{
@@ -44,6 +48,11 @@ export default function LandingPage() {
             className="loyalty-card-container"
             initial={{
               scale: 0.8,
+              x: "-100%",
+            }}
+            whileInView={{
+              x: 0,
+              transition: { delay: 0.2, stiffness: 150, duration: 0.5 },
             }}
             drag="x"
             dragConstraints={{
@@ -72,7 +81,7 @@ export default function LandingPage() {
             },
             {
               heading: "New Arrival",
-              text: "Checkout our exclusive range of Arabica coffee bean powder.",
+              text: "Checkout our exclusive range of Robusta coffee bean powder.",
               btnText: "Robusta",
               imgSrc: CoffeeBean2,
               imgAlt: "robusta-beans",
@@ -84,7 +93,7 @@ export default function LandingPage() {
               btnText={item.btnText}
               imgSrc={item.imgSrc}
               imgAlt={item.imgAlt}
-              key={uuidv4()}
+              key={item.text}
             />
           ))}
         </div>

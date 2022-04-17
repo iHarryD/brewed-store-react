@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
 
 import "./css/productListingPageStyle.css";
-import { ProductCard } from "../cards/Cards";
-import FilterMenu from "../filterMenu/FilterMenu";
-import ProductListingSection from "../productListingSection/ProductListingSection";
+import { ProductCard } from "../../components/cards/Cards";
+import FilterMenu from "../../components/filterMenu/FilterMenu";
+import ProductListingSection from "../../components/productListingSection/ProductListingSection";
 import ProductListingPageLogic from "./logic/ProductListingPageLogic";
 import { useWishlist } from "../../contexts/wishlistContext";
 import { useCart } from "../../contexts/cartContext";
 import {
-  AddToWishlist,
-  DeleteFromWishlist,
+  addToWishlist,
+  deleteFromWishlist,
 } from "../../services/wishlistServices";
-import { AddToCart } from "../../services/cartServices";
+import { addToCart } from "../../services/cartServices";
 
 export default function ProductListingPage() {
   const { inViewProducts, allBrands } = ProductListingPageLogic();
@@ -44,12 +44,12 @@ export default function ProductListingPage() {
                 isInWishlist={isInWishList}
                 wishlistSetter={setWishlist}
                 wishlistClickHandler={
-                  isInWishList ? DeleteFromWishlist : AddToWishlist
+                  isInWishList ? deleteFromWishlist : addToWishlist
                 }
                 isInCart={isInCart}
                 cartSetter={setCart}
                 cartClickHandler={
-                  isInCart ? () => navigate("/cart") : AddToCart
+                  isInCart ? () => navigate("/cart") : addToCart
                 }
               />
             );

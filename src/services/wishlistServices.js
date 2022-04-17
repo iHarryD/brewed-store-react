@@ -1,6 +1,6 @@
 import wishlistAxiosInstance from "./axiosInstances/wishlistAxiosInstance";
 
-export async function GetWishlist(wishlistSetter) {
+export async function getWishlist(wishlistSetter) {
   if (!localStorage.getItem("logged-in")) return wishlistSetter([]);
   try {
     const res = await wishlistAxiosInstance().get("");
@@ -12,7 +12,7 @@ export async function GetWishlist(wishlistSetter) {
   }
 }
 
-export async function AddToWishlist(wishlistSetter, productID) {
+export async function addToWishlist(wishlistSetter, productID) {
   try {
     const res = await wishlistAxiosInstance().put("/add", { productID });
     if (Array.isArray(res.data)) {
@@ -23,7 +23,7 @@ export async function AddToWishlist(wishlistSetter, productID) {
   }
 }
 
-export async function DeleteFromWishlist(wishlistSetter, productID) {
+export async function deleteFromWishlist(wishlistSetter, productID) {
   try {
     const res = await wishlistAxiosInstance().put("/delete", { productID });
     if (Array.isArray(res.data)) {

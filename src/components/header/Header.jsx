@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
@@ -12,6 +12,7 @@ import { useAuth } from "../../contexts/authContext";
 
 export default function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isLoggedIn, logout } = useAuth();
   return (
     <header>
@@ -47,11 +48,16 @@ export default function Header() {
           </div>
         ) : (
           <div className="--horizontal-flex --centered-flex --has-gap">
-            <Link to="login">
-              <button className="btn --primary-btn --has-hover-overlay">
-                Log In
-              </button>
-            </Link>
+            <button
+              className="btn --primary-btn --has-hover-overlay"
+              onClick={() =>
+                navigate("/login", {
+                  state: { previousRoute: location.pathname },
+                })
+              }
+            >
+              Log In
+            </button>
             <Link to="signup">
               <button className="btn --secondary-btn">Sign Up</button>
             </Link>

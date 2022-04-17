@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 
 import { useAuth } from "./authContext";
-import { GetWishlist } from "../services/wishlistServices";
+import { getWishlist } from "../services/wishlistServices";
 
 const WishlistContext = createContext();
 
@@ -9,7 +9,7 @@ export function WishlistProvider({ children }) {
   const [wishlist, setWishlist] = useState([]);
   const { isLoggedIn } = useAuth();
 
-  useEffect(() => GetWishlist(setWishlist), [isLoggedIn]);
+  useEffect(() => getWishlist(setWishlist), [isLoggedIn]);
 
   return (
     <WishlistContext.Provider value={{ wishlist, setWishlist }}>

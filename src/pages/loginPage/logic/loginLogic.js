@@ -11,8 +11,8 @@ export default function LoginLogic() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  async function login(data) {
-    if (!data.email || !data.password)
+  async function login(email, password) {
+    if (!email || !password)
       return setServerResponse({
         type: "error",
         text: "Fill both fields to proceed.",
@@ -22,8 +22,8 @@ export default function LoginLogic() {
       const res = await axios.post(
         "https://b-brewed-store.vercel.app/api/auth/login",
         {
-          email: data.email,
-          password: data.password,
+          email: email,
+          password: password,
         }
       );
       setServerResponse({

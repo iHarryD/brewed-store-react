@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import "./css/signupPageStyle.css";
-import { ButtonWithLoader } from "../buttons/Buttons";
+import { ButtonWithLoader } from "../../components/buttons/Buttons";
 import SignupLogic from "./logic/signupLogic";
+import { loginSignupVariant } from "../../data/loginSignupVariant";
 
 export default function SignupPage() {
   const firstNameInputRef = useRef();
@@ -24,7 +26,14 @@ export default function SignupPage() {
 
   return (
     <main className="main --login-signup --verticle-flex --centered-flex">
-      <div className="login-signup-outer-container">
+      <motion.div
+        variants={loginSignupVariant}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition="transition"
+        className="login-signup-outer-container"
+      >
         <div className="signup-box --verticle-flex --has-gap">
           <form
             className="--verticle-flex"
@@ -130,7 +139,7 @@ export default function SignupPage() {
               )}
               <ButtonWithLoader
                 text="Register"
-                loading={signingIn}
+                loadingState={signingIn}
                 loaderColor="#fff"
                 clickHandler={() =>
                   signup({
@@ -157,7 +166,7 @@ export default function SignupPage() {
             Already a user? Log In
           </button>
         </div>
-      </div>
+      </motion.div>
     </main>
   );
 }

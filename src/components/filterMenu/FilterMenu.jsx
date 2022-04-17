@@ -2,9 +2,10 @@ import { useRef } from "react";
 
 import "./css/filterMenuStyle.css";
 import { useFilter } from "../../contexts/filterContext";
+import capitalizeFirstLetter from "../../helpers/capitalizeFirstLetter";
 
 export default function FilterMenu({ allBrands }) {
-  const { filterDispatch } = useFilter();
+  const { filter, filterDispatch } = useFilter();
   const rangeSliderRef = useRef();
   return (
     <aside className="aside--filter-menu --verticle-flex --has-gap --has-padding --small-text">
@@ -16,6 +17,7 @@ export default function FilterMenu({ allBrands }) {
             type="text"
             name="price-filter"
             placeholder="min"
+            defaultValue={filter.allFilters.priceRange.min || ""}
             onKeyUp={(e) =>
               filterDispatch({
                 type: "FILTER_BY_PRICE",
@@ -30,6 +32,7 @@ export default function FilterMenu({ allBrands }) {
             type="text"
             name="price-filter"
             placeholder="max"
+            defaultValue={filter.allFilters.priceRange.max || ""}
             onKeyUp={(e) =>
               filterDispatch({
                 type: "FILTER_BY_PRICE",
@@ -57,8 +60,8 @@ export default function FilterMenu({ allBrands }) {
             id="rating-filter-input"
             min="0"
             max="5"
-            defaultValue={0}
             ref={rangeSliderRef}
+            defaultValue={filter.allFilters.minRating || 0}
           />
           <span className="current-range-value">
             {rangeSliderRef.current?.value || 0} +
@@ -80,6 +83,7 @@ export default function FilterMenu({ allBrands }) {
                   payload: { filterBrand: e.target.value },
                 })
               }
+              defaultChecked={filter.allFilters.brand.includes(brand)}
             />
             <label htmlFor={`${brand.toLowerCase()}-brand-filter`}>
               {brand}
@@ -97,6 +101,7 @@ export default function FilterMenu({ allBrands }) {
               onChange={() =>
                 filterDispatch({ type: "TOGGLE_INCLUDE_OUT_OF_STOCK" })
               }
+              defaultChecked={filter.allFilters.includeOutOfStock}
             />
             <label htmlFor="in-stock-filter">Include out of stock</label>
           </div>
@@ -107,6 +112,7 @@ export default function FilterMenu({ allBrands }) {
               onChange={() =>
                 filterDispatch({ type: "TOGGLE_SHOW_FLASH_DELIVERY_ONLY" })
               }
+              defaultChecked={filter.allFilters.showFlashDeliveryOnly}
             />
             <label htmlFor="flash-delivery-filter">Flash delivery only</label>
           </div>
@@ -114,67 +120,31 @@ export default function FilterMenu({ allBrands }) {
       </div>
       <div>
         <p>Sort by</p>
-        <div className="inline-filter-container">
-          <input
-            type="radio"
-            name="sort-by"
-            id="relevance"
-            value="relevance"
-            onClick={(e) =>
-              filterDispatch({
-                type: `SORT_BY`,
-                payload: { sortBy: e.target.value },
-              })
-            }
-            defaultChecked
-          />
-          <label htmlFor="relevance">Relevance</label>
-        </div>
-        <div className="inline-filter-container">
-          <input
-            type="radio"
-            name="sort-by"
-            id="price--low-to-high"
-            value="price--low-to-high"
-            onClick={(e) =>
-              filterDispatch({
-                type: `SORT_BY`,
-                payload: { sortBy: e.target.value },
-              })
-            }
-          />
-          <label htmlFor="price--low-to-high">Price: Low to high</label>
-        </div>
-        <div className="inline-filter-container">
-          <input
-            type="radio"
-            name="sort-by"
-            id="price--high-to-low"
-            value="price--high-to-low"
-            onClick={(e) =>
-              filterDispatch({
-                type: `SORT_BY`,
-                payload: { sortBy: e.target.value },
-              })
-            }
-          />
-          <label htmlFor="price--high-to-low">Price: High to low</label>
-        </div>
-        <div className="inline-filter-container">
-          <input
-            type="radio"
-            name="sort-by"
-            id="highest-rated-first"
-            value="highest-rated-first"
-            onClick={(e) =>
-              filterDispatch({
-                type: `SORT_BY`,
-                payload: { sortBy: e.target.value },
-              })
-            }
-          />
-          <label htmlFor="highest-rated-first">Highest rated first</label>
-        </div>
+        {[
+          "relevance",
+          "price--low-to-high",
+          "price--high-to-low",
+          "highest-rated-first",
+        ].map((sortingProp) => (
+          <div className="inline-filter-container">
+            <input
+              type="radio"
+              name="sort-by"
+              id={sortingProp}
+              value={sortingProp}
+              onClick={(e) =>
+                filterDispatch({
+                  type: `SORT_BY`,
+                  payload: { sortBy: e.target.value },
+                })
+              }
+              defaultChecked={filter.sortBy === sortingProp}
+            />
+            <label htmlFor={sortingProp}>
+              {capitalizeFirstLetter(sortingProp).replaceAll("-", " ")}
+            </label>
+          </div>
+        ))}
       </div>
     </aside>
   );
