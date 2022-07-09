@@ -7,6 +7,7 @@ import { useCart } from "../../contexts/cartContext";
 import { useWishlist } from "../../contexts/wishlistContext";
 import { deleteFromCart, moveToWishlist } from "../../services/cartServices";
 import CartLogic from "./logic/CartLogic";
+import AddressCheckout from "../../components/addressCheckout/AddressCheckout";
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -63,8 +64,40 @@ export default function Cart() {
                     })}
                   </AnimatePresence>
                 </motion.div>
-                <aside className="aside--checkout-total --verticle-flex --has-gap --has-padding">
+                <aside className="aside--checkout --verticle-flex --has-padding">
+                  <div>
+                    <div className="heading-btn-container">
+                      <h3 className="aside__heading">Selected Address</h3>
+                      <button className="btn --text-btn">Change</button>
+                    </div>
+                    <div>
+                      {[].map(
+                        ({
+                          name,
+                          phoneNumber,
+                          firstLineAddress,
+                          lastLineAddress,
+                          city,
+                          state,
+                          zipCode,
+                          country,
+                        }) => (
+                          <AddressCheckout
+                            name={name}
+                            phoneNumber={phoneNumber}
+                            firstLineAddress={firstLineAddress}
+                            lastLineAddress={lastLineAddress}
+                            city={city}
+                            state={state}
+                            country={country}
+                            zipCode={zipCode}
+                          />
+                        )
+                      )}
+                    </div>
+                  </div>
                   <div className="total-breakdown-container">
+                    <h3 className="aside__heading">Total</h3>
                     <p className="price-breakdown-items">
                       From cart Rs <span>{cartTotalPrice}</span>
                     </p>
@@ -81,10 +114,10 @@ export default function Cart() {
                       Total Rs <span>{cartTotalPrice}</span>
                     </p>
                   </div>
-                  <button className="btn --primary-btn --has-hover-overlay add-address-btn">
-                    Add address
+                  <button className="btn --primary-btn --has-hover-overlay">
+                    Checkout
                   </button>
-                </aside>{" "}
+                </aside>
               </>
             ) : (
               <div className="quiet-cart --verticle-flex --centered-flex --has-gap --bold-700">

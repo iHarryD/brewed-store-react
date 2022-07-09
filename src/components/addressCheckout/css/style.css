@@ -1,0 +1,8 @@
+.address-container {
+  background: var(--ACCENT-CLR);
+  border-radius: var(--BORDER-RADIUS);
+  color: var(--SECONDARY-FONT-CLR);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
