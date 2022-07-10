@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import cartAxiosInstance from "./axiosInstances/cartAxiosInstance";
 import wishlistAxiosInstance from "./axiosInstances/wishlistAxiosInstance";
 
