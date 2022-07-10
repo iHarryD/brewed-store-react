@@ -7,13 +7,20 @@ import { useCart } from "../../contexts/cartContext";
 import { useWishlist } from "../../contexts/wishlistContext";
 import { deleteFromCart, moveToWishlist } from "../../services/cartServices";
 import CartLogic from "./logic/CartLogic";
-import AddressCheckout from "../../components/addressCheckout/AddressCheckout";
+import AddressManagementBox from "../../components/addressManagementBox/AddressManagementBox";
+import BodyBackdrop from "../../components/bodyBackdrop/BodyBackdrop";
+import Address from "../../components/address/Address";
 
 export default function Cart() {
   const navigate = useNavigate();
   const { setCart } = useCart();
   const { wishlist, setWishlist } = useWishlist();
-  const { cartDisplay, cartTotalPrice } = CartLogic();
+  const {
+    cartDisplay,
+    cartTotalPrice,
+    isAddressMenuActive,
+    setIsAddressMenuActive,
+  } = CartLogic();
 
   const cartVariant = {
     initial: { opacity: 0, x: 150 },
@@ -25,6 +32,15 @@ export default function Cart() {
   };
   return (
     <AnimatePresence>
+      {isAddressMenuActive && (
+        <BodyBackdrop>
+          <div className="address-management-box-container --verticle-flex --centered-flex">
+            <AddressManagementBox
+              closeBtnHandler={() => setIsAddressMenuActive(false)}
+            />
+          </div>
+        </BodyBackdrop>
+      )}
       <motion.main variants={cartVariant} initial="initial" animate="final">
         <h2 className="sub-heading --h2 heading--cart">Cart</h2>
         <div className="--horizontal-flex">
@@ -68,31 +84,42 @@ export default function Cart() {
                   <div>
                     <div className="heading-btn-container">
                       <h3 className="aside__heading">Selected Address</h3>
-                      <button className="btn --text-btn">Change</button>
+                      <button
+                        className="btn --text-btn"
+                        onClick={() => setIsAddressMenuActive(true)}
+                      >
+                        Manage
+                      </button>
                     </div>
                     <div>
-                      {[].map(
-                        ({
-                          name,
-                          phoneNumber,
-                          firstLineAddress,
-                          lastLineAddress,
-                          city,
-                          state,
-                          zipCode,
-                          country,
-                        }) => (
-                          <AddressCheckout
-                            name={name}
-                            phoneNumber={phoneNumber}
-                            firstLineAddress={firstLineAddress}
-                            lastLineAddress={lastLineAddress}
-                            city={city}
-                            state={state}
-                            country={country}
-                            zipCode={zipCode}
-                          />
+                      {false ? (
+                        [].map(
+                          ({
+                            name,
+                            phoneNumber,
+                            firstLineAddress,
+                            lastLineAddress,
+                            city,
+                            state,
+                            zipCode,
+                            country,
+                          }) => (
+                            <Address
+                              name={name}
+                              phoneNumber={phoneNumber}
+                              firstLineAddress={firstLineAddress}
+                              lastLineAddress={lastLineAddress}
+                              city={city}
+                              state={state}
+                              country={country}
+                              zipCode={zipCode}
+                            />
+                          )
                         )
+                      ) : (
+                        <p className="--bold-700 --centered-text --opacity-half">
+                          No saved address
+                        </p>
                       )}
                     </div>
                   </div>

@@ -8,6 +8,7 @@ export default function CartLogic() {
   const { cart } = useCart();
   const [cartTotalPrice, setCartTotalPrice] = useState();
   const [cartDisplay, setCartDisplay] = useState([]);
+  const [isAddressMenuActive, setIsAddressMenuActive] = useState(false);
 
   useEffect(() => {
     setCartDisplay(() =>
@@ -29,5 +30,10 @@ export default function CartLogic() {
     );
   }, [cart]);
 
-  return { cartDisplay, cartTotalPrice };
+  return {
+    cartDisplay,
+    cartTotalPrice,
+    isAddressMenuActive,
+    setIsAddressMenuActive,
+  };
 }
