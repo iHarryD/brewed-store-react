@@ -1,0 +1,12 @@
+.address-box {
+  background: var(--PRIMARY-BACKGROUND-CLR);
+  gap: 2rem;
+  height: 30rem;
+  overflow: auto;
+  padding: 1rem 2rem;
+  width: min(100%, 50rem);
+}
+
+.address-box-close-btn {
+  margin-left: auto;
+}

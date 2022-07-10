@@ -1,0 +1,9 @@
+.input-label-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.multiple-input-column {
+  justify-content: space-between;
+}
