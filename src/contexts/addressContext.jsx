@@ -18,6 +18,6 @@ export function AddressProvider({ children }) {
   );
 }
 
-export function useCart() {
+export function useAddress() {
   return useContext(AddressContext);
 }
