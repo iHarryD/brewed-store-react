@@ -9,12 +9,14 @@ import { deleteFromCart, moveToWishlist } from "../../services/cartServices";
 import CartLogic from "./logic/CartLogic";
 import AddressManagementBox from "../../components/addressManagementBox/AddressManagementBox";
 import BodyBackdrop from "../../components/bodyBackdrop/BodyBackdrop";
-import Address from "../../components/address/Address";
+import { CheckoutAddress } from "../../components/address/Address";
+import { useAddress } from "../../contexts/addressContext";
 
 export default function Cart() {
   const navigate = useNavigate();
   const { setCart } = useCart();
   const { wishlist, setWishlist } = useWishlist();
+  const { addresses } = useAddress();
   const {
     cartDisplay,
     cartTotalPrice,
@@ -83,39 +85,41 @@ export default function Cart() {
                 <aside className="aside--checkout --verticle-flex --has-padding">
                   <div>
                     <div className="heading-btn-container">
-                      <h3 className="aside__heading">Selected Address</h3>
+                      <h3 className="aside__heading">Deliver to</h3>
                       <button
                         className="btn --text-btn"
                         onClick={() => setIsAddressMenuActive(true)}
                       >
-                        Manage
+                        Change
                       </button>
                     </div>
                     <div>
-                      {false ? (
-                        [].map(
-                          ({
-                            name,
-                            phoneNumber,
-                            firstLineAddress,
-                            lastLineAddress,
-                            city,
-                            state,
-                            zipCode,
-                            country,
-                          }) => (
-                            <Address
-                              name={name}
-                              phoneNumber={phoneNumber}
-                              firstLineAddress={firstLineAddress}
-                              lastLineAddress={lastLineAddress}
-                              city={city}
-                              state={state}
-                              country={country}
-                              zipCode={zipCode}
-                            />
+                      {addresses.length ? (
+                        addresses
+                          .slice(0, 1)
+                          .map(
+                            ({
+                              contactName,
+                              phoneNumber,
+                              firstLineAddress,
+                              lastLineAddress,
+                              city,
+                              state,
+                              zipCode,
+                              country,
+                            }) => (
+                              <CheckoutAddress
+                                name={contactName}
+                                phoneNumber={phoneNumber}
+                                firstLineAddress={firstLineAddress}
+                                lastLineAddress={lastLineAddress}
+                                city={city}
+                                state={state}
+                                country={country}
+                                zipCode={zipCode}
+                              />
+                            )
                           )
-                        )
                       ) : (
                         <p className="--bold-700 --centered-text --opacity-half">
                           No saved address
