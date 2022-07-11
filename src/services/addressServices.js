@@ -14,7 +14,7 @@ export async function getAddresses(addressSetter) {
 
 export async function addAddress(addressSetter, address) {
   try {
-    const res = await addressAxiosInstance().post("", { address });
+    const res = await addressAxiosInstance().post("", address);
     if (Array.isArray(res.data)) {
       addressSetter(res.data);
     }
@@ -25,7 +25,7 @@ export async function addAddress(addressSetter, address) {
 
 export async function deleteAddress(addressSetter, addressID) {
   try {
-    const res = await addressAxiosInstance().delete("", { addressID });
+    const res = await addressAxiosInstance().delete(`?addressID=${addressID}`);
     if (Array.isArray(res.data)) {
       addressSetter(res.data);
     }
