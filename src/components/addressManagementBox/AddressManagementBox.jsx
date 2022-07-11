@@ -1,10 +1,12 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Address from "../address/Address";
+import { useAddress } from "../../contexts/addressContext";
+import { Address } from "../address/Address";
 import NewAddressInput from "../newAddressInput/NewAddressInput";
 import "./css/style.css";
 
 export default function AddressManagementBox({ closeBtnHandler }) {
+  const { addresses } = useAddress();
   return (
     <div className="address-box --verticle-flex">
       <button
@@ -19,19 +21,33 @@ export default function AddressManagementBox({ closeBtnHandler }) {
       </div>
       <div className="--verticle-flex --has-gap">
         <h3 className="--centered-text">Saved addresses</h3>
-        {false ? (
-          [1, 2, 3].map(() => (
-            <Address
-              name="Prashant Kumar"
-              phoneNumber={9973389193}
-              country="India"
-              firstLineAddress="Somewhere is a coue ajoosba is cool"
-              lastLineAddress="B22 is aco mon cure"
-              city="Kolkata"
-              state="West Bengal"
-              zipCode={283910}
-            />
-          ))
+        {addresses.length ? (
+          addresses.map(
+            ({
+              _id,
+              contactName,
+              phoneNumber,
+              firstLineAddress,
+              lastLineAddress,
+              city,
+              state,
+              zipCode,
+              country,
+            }) => (
+              <Address
+                _id={_id}
+                key={_id}
+                name={contactName}
+                phoneNumber={phoneNumber}
+                firstLineAddress={firstLineAddress}
+                lastLineAddress={lastLineAddress}
+                city={city}
+                state={state}
+                country={country}
+                zipCode={zipCode}
+              />
+            )
+          )
         ) : (
           <p className="--bold-700 --centered-text --opacity-half">
             You have no saved address here.

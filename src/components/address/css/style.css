@@ -5,4 +5,23 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  position: relative;
+}
+
+.address-container.--checkout-variant {
+  position: static;
+}
+
+.address-btn-container {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.address-delete-btn {
+  transition: color var(--TRANSITION-DURATION);
+}
+
+.address-delete-btn:hover {
+  color: var(--RED-CLR);
 }

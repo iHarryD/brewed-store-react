@@ -7,3 +7,7 @@
 .multiple-input-column {
   justify-content: space-between;
 }
+
+.multiple-input-column input {
+  padding: var(--INPUT-PADDING-Y) 1rem;
+}
