@@ -18,10 +18,15 @@
   top: 1rem;
 }
 
-.address-delete-btn {
+.address-delete-btn,
+.address-select-btn {
   transition: color var(--TRANSITION-DURATION);
 }
 
 .address-delete-btn:hover {
   color: var(--RED-CLR);
+}
+
+.address-select-btn:hover {
+  color: var(--GREEN-CLR);
 }

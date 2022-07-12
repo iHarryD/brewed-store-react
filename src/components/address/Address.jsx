@@ -1,4 +1,8 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle as faRCheckCircle } from "@fortawesome/free-regular-svg-icons";
+import {
+  faTrash,
+  faCheckCircle as faSCheckCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAddress } from "../../contexts/addressContext";
 import { deleteAddress } from "../../services/addressServices";
@@ -15,15 +19,32 @@ export function Address({
   zipCode,
   country,
 }) {
-  const { setAddresses } = useAddress();
+  const { selectedAddress, setSelectedAddress, setAddresses, addresses } =
+    useAddress();
   return (
     <div className="address-container --has-padding">
-      <div className="address-btn-container">
+      <div className="address-btn-container --horizontal-flex --has-gap">
         <button
           className="address-delete-btn btn --icon-btn"
           onClick={() => deleteAddress(setAddresses, _id)}
         >
           <FontAwesomeIcon icon={faTrash} />
+        </button>
+        <button
+          className="address-select-btn btn --icon-btn"
+          onClick={() => {
+            if (selectedAddress) return;
+            const selectedAddressDetails = addresses.find(
+              (address) => address._id === _id
+            );
+            setSelectedAddress(selectedAddressDetails);
+          }}
+        >
+          {selectedAddress?._id === _id ? (
+            <FontAwesomeIcon icon={faSCheckCircle} />
+          ) : (
+            <FontAwesomeIcon icon={faRCheckCircle} />
+          )}
         </button>
       </div>
       <div className="--horizontal-flex --has-gap">

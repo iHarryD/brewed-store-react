@@ -4,8 +4,10 @@
 }
 
 .section.--cart {
+  display: grid;
   flex-grow: 1;
   flex-wrap: wrap;
+  grid-template-columns: 2fr 1fr;
 }
 
 .cart-items-container {
@@ -75,4 +77,10 @@
 
 .address-management-box-container {
   height: 100vh;
+}
+
+.rs-sign-container {
+  font-size: 0.7rem;
+  margin: 0 5px;
+  opacity: 0.8;
 }
