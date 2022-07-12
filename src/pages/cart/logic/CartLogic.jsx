@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { useCart } from "../../../contexts/cartContext";
 import { useProduct } from "../../../contexts/productContext";
 
@@ -24,11 +23,10 @@ export default function CartLogic() {
         const product = allProducts.find(
           (product) => currentCartItem.productID === product._id
         );
-        console.log(product);
         return (totalPrice += product.currentPrice);
       }, 0)
     );
-  }, [cart]);
+  }, [cart, allProducts]);
 
   return {
     cartDisplay,
