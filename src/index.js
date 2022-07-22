@@ -8,6 +8,7 @@ import { FilterProvider } from "./contexts/filterContext";
 import { AuthProvider } from "./contexts/authContext";
 import { WishlistProvider } from "./contexts/wishlistContext";
 import { CartProvider } from "./contexts/cartContext";
+import { AddressProvider } from "./contexts/addressContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,9 +17,11 @@ ReactDOM.render(
         <ProductProvider>
           <CartProvider>
             <WishlistProvider>
-              <FilterProvider>
-                <App />
-              </FilterProvider>
+              <AddressProvider>
+                <FilterProvider>
+                  <App />
+                </FilterProvider>
+              </AddressProvider>
             </WishlistProvider>
           </CartProvider>
         </ProductProvider>

@@ -1,0 +1,13 @@
+.input-label-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.multiple-input-column {
+  justify-content: space-between;
+}
+
+.multiple-input-column input {
+  padding: var(--INPUT-PADDING-Y) 1rem;
+}

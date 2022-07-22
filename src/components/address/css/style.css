@@ -1,0 +1,32 @@
+.address-container {
+  background: var(--ACCENT-CLR);
+  border-radius: var(--BORDER-RADIUS);
+  color: var(--SECONDARY-FONT-CLR);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.address-container.--checkout-variant {
+  position: static;
+}
+
+.address-btn-container {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.address-delete-btn,
+.address-select-btn {
+  transition: color var(--TRANSITION-DURATION);
+}
+
+.address-delete-btn:hover {
+  color: var(--RED-CLR);
+}
+
+.address-select-btn:hover {
+  color: var(--GREEN-CLR);
+}
