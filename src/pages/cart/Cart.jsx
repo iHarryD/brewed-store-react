@@ -13,6 +13,10 @@ import { CheckoutAddress } from "../../components/address/Address";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupee } from "@fortawesome/free-solid-svg-icons";
 import { useAddress } from "../../contexts/addressContext";
+import { loadScript } from "../../helpers/loadScript";
+import { createPayment } from "../../services/paymentServices";
+import { useState } from "react";
+import PaymentAlert from "../../components/paymentAlert/PaymentAlert";
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -25,22 +29,71 @@ export default function Cart() {
     isAddressMenuActive,
     setIsAddressMenuActive,
   } = CartLogic();
+  const [paymentMessage, setPaymentMessage] = useState(null);
 
   const cartVariant = {
     initial: { opacity: 0, x: 150 },
     final: {
       opacity: 1,
       x: 0,
-      // transition: { delay: 0.2, when: "beforeChildren" },
     },
   };
+
+  async function showRazorpay() {
+    const loadRazorpay = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+    if (!loadRazorpay) return;
+    const result = await createPayment();
+    if (result.status !== 200) return;
+    const paymentDetails = result.data.data;
+    const options = {
+      amount: paymentDetails.amount.toString(),
+      currency: paymentDetails.currency,
+      order_id: paymentDetails.id,
+      key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+      name: "Brewed Store",
+      description: "Make the payment to confirm your order.",
+      image: "https://example.com/your_logo",
+      handler: function (response) {
+        setPaymentMessage(
+          `Payment successful for order ${response.razorpay_order_id}`
+        );
+      },
+      prefill: {
+        name: paymentDetails.name,
+        email: paymentDetails.email,
+      },
+      theme: {
+        color: "#1f1e1a",
+      },
+    };
+    const razorpayObject = new window.Razorpay(options);
+    razorpayObject.open();
+    razorpayObject.on("payment.failed", function (response) {
+      setPaymentMessage(
+        `Payment for order ${response.error.metadata.order_id} failed. ${response.error.reason}`
+      );
+    });
+  }
+
   return (
     <>
       {isAddressMenuActive && (
         <BodyBackdrop>
-          <div className="address-management-box-container --verticle-flex --centered-flex">
+          <div className="modal-container --verticle-flex --centered-flex">
             <AddressManagementBox
               closeBtnHandler={() => setIsAddressMenuActive(false)}
+            />
+          </div>
+        </BodyBackdrop>
+      )}
+      {paymentMessage && (
+        <BodyBackdrop>
+          <div className="modal-container --verticle-flex --centered-flex">
+            <PaymentAlert
+              closeFunc={() => setPaymentMessage(null)}
+              text={paymentMessage}
             />
           </div>
         </BodyBackdrop>
@@ -166,8 +219,9 @@ export default function Cart() {
                     <button
                       className="btn --primary-btn --has-hover-overlay"
                       disabled={!selectedAddress}
+                      onClick={() => showRazorpay()}
                     >
-                      {selectedAddress ? "Checkout" : "Selected an address"}
+                      {selectedAddress ? "Make payment" : "Selected an address"}
                     </button>
                   </aside>
                 </>
