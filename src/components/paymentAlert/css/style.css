@@ -1,0 +1,12 @@
+.payment-alert {
+  border-radius: 0.5rem;
+  background: var(--PRIMARY-BACKGROUND-CLR);
+  color: var(--PRIMARY-FONT-CLR);
+  margin: auto;
+  padding: 1rem;
+  width: 20rem;
+}
+
+.payment-alert .btn {
+  margin-top: 1rem;
+}
