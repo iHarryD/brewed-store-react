@@ -7,18 +7,36 @@ import Cart from "../pages/cart/Cart";
 import LoginPage from "../pages/loginPage/LoginPage";
 import SignupPage from "../pages/signupPage/SignupPage";
 import { AnimatePresence } from "framer-motion";
+import { PrivateRoute } from "../components/privateRoute/PrivateRoute";
+import { useAuth } from "../contexts/authContext";
 
 export default function AppRoutes() {
   const location = useLocation();
+  const {
+    isLoggedIn: { status },
+  } = useAuth();
   return (
     <AnimatePresence exitBeforeEnter>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<LandingPage />} />
         <Route path="all-products" element={<ProductListing />} />
-        <Route path="wishlist" element={<Wishlist />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="signup" element={<SignupPage />} />
+        <Route
+          path="wishlist"
+          element={<PrivateRoute children={<Wishlist />} />}
+        />
+        <Route path="cart" element={<PrivateRoute children={<Cart />} />} />
+        <Route
+          path="login"
+          element={
+            <PrivateRoute children={<LoginPage />} isAuthenticated={!status} />
+          }
+        />
+        <Route
+          path="signup"
+          element={
+            <PrivateRoute children={<SignupPage />} isAuthenticated={!status} />
+          }
+        />
       </Routes>
     </AnimatePresence>
   );
