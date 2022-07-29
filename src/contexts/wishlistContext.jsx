@@ -9,7 +9,13 @@ export function WishlistProvider({ children }) {
   const [wishlist, setWishlist] = useState([]);
   const { isLoggedIn } = useAuth();
 
-  useEffect(() => getWishlist(setWishlist), [isLoggedIn]);
+  useEffect(() => {
+    if (isLoggedIn.status) {
+      getWishlist(setWishlist);
+    } else {
+      setWishlist([]);
+    }
+  }, [isLoggedIn]);
 
   return (
     <WishlistContext.Provider value={{ wishlist, setWishlist }}>

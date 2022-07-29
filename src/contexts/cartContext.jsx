@@ -9,7 +9,13 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
   const { isLoggedIn } = useAuth();
 
-  useEffect(() => getCart(setCart), [isLoggedIn]);
+  useEffect(() => {
+    if (isLoggedIn.status) {
+      getCart(setCart);
+    } else {
+      setCart([]);
+    }
+  }, [isLoggedIn]);
 
   return (
     <CartContext.Provider value={{ cart, setCart }}>
