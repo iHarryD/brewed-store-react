@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 import "./css/featuresCarouselStyle.css";
 
@@ -43,9 +44,11 @@ export default function FeaturesCarousel(props) {
           <img src={item.imgSrc} alt={item.imgAlt} />
           <div className="features-carousel-overlay --verticle-flex">
             <h2 className="sub-heading --h2">{item.text}</h2>
-            <button className="btn --primary-btn --has-hover-overlay">
-              {item.btnText}
-            </button>
+            <Link to="/all-products">
+              <button className="btn --primary-btn --has-hover-overlay">
+                {item.btnText}
+              </button>
+            </Link>
           </div>
         </div>
       ))}

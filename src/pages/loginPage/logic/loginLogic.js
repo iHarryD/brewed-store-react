@@ -36,7 +36,7 @@ export default function LoginLogic() {
       setIsLoggedIn({ status: true, userName: res.data.firstName });
       setTimeout(() => {
         if (location.state?.previousRoute === "/signup") {
-          navigate("/");
+          navigate("/all-products");
         } else {
           navigate(-1);
         }

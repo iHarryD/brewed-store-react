@@ -8,6 +8,7 @@ export default function Footer() {
   const footerLinksHover = { x: 15 };
   return (
     <footer className="footer --verticle-flex --centered-flex --has-padding">
+      <h3>All links/buttons in this footer are non-functional.</h3>
       <div className="newsletter-sub-container --verticle-flex">
         <h3 className="sub-heading --h3">Subscribe to our newsletter.</h3>
         <div className="input-container">

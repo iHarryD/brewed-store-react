@@ -25,18 +25,7 @@ export default function LoginPage() {
         transition="transition"
         className="login-signup-outer-container"
       >
-        <div className="login-box-container --horizontal-flex">
-          <section className="section --login-with --verticle-flex --centered-flex --has-gap">
-            <button className="btn --with-google --primary-btn --has-hover-overlay">
-              Continue with Google
-            </button>
-            <button className="btn --with-apple --primary-btn --has-hover-overlay">
-              Continue with Apple
-            </button>
-            <button className="btn --with-facebook --primary-btn --has-hover-overlay">
-              Continue with Facebook
-            </button>
-          </section>
+        <div className="login-box-container">
           <section className="section --login-box --verticle-flex --centered-flex --has-gap">
             <h3 className="sub-heading --h3">Login</h3>
             <div className="--verticle-flex --has-gap">
@@ -94,10 +83,6 @@ export default function LoginPage() {
                   }}
                 />
               </div>
-            </div>
-            <div className="login-utilities-container">
-              <button className="btn --text-btn">Login with OTP</button>
-              <button className="btn --text-btn">Forgot password?</button>
             </div>
             <Link to="/signup" className="signup-link">
               <button className="btn --text-btn">New user? Sign up</button>
