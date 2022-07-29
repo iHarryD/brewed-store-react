@@ -64,6 +64,11 @@ export function FilterProvider({ children }) {
           ...state,
           sortBy: action.payload.sortBy,
         };
+      case `SEARCH_BY_TITLE`:
+        return {
+          ...state,
+          titleQuery: action.payload.titleQuery,
+        };
       default:
         return state;
     }
@@ -80,6 +85,7 @@ export function FilterProvider({ children }) {
       },
     },
     sortBy: "relevance",
+    titleQuery: "",
   });
   return (
     <FilterContext.Provider value={{ filter, filterDispatch }}>

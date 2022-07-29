@@ -53,3 +53,10 @@
 .icon-btn-container {
   gap: 2rem;
 }
+
+.show-purpose-only-alert {
+  color: #0009;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: center;
+}

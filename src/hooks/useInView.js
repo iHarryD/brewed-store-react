@@ -26,11 +26,16 @@ export default function useFilter(originalArray, filters) {
         (product) => product.rating >= filters.allFilters.minRating
       );
     }
+    if (filters.titleQuery.length) {
+      const regexForSearch = new RegExp(filters.titleQuery, "gi");
+      toReturn = toReturn.filter((product) =>
+        regexForSearch.test(product.name)
+      );
+    }
     if (
       !!Number(filters.allFilters.priceRange.min) &&
       !!Number(filters.allFilters.priceRange.max)
     ) {
-      console.log("innn");
       toReturn = toReturn.filter(
         (product) =>
           Number(filters.allFilters.priceRange.max) >= product.currentPrice &&
