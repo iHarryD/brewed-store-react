@@ -5,7 +5,11 @@ import "./css/cartStyle.css";
 import { CartCard } from "../../components/cards/Cards";
 import { useCart } from "../../contexts/cartContext";
 import { useWishlist } from "../../contexts/wishlistContext";
-import { deleteFromCart, moveToWishlist } from "../../services/cartServices";
+import {
+  deleteFromCart,
+  emptyCart,
+  moveToWishlist,
+} from "../../services/cartServices";
 import CartLogic from "./logic/CartLogic";
 import AddressManagementBox from "../../components/addressManagementBox/AddressManagementBox";
 import BodyBackdrop from "../../components/bodyBackdrop/BodyBackdrop";
@@ -59,6 +63,7 @@ export default function Cart() {
         setPaymentMessage(
           `Payment successful for order ${response.razorpay_order_id}`
         );
+        emptyCart((result) => setCart([]));
       },
       prefill: {
         name: paymentDetails.name,
@@ -114,6 +119,7 @@ export default function Cart() {
                         const isInWishlist = wishlist.find(
                           (currentItem) => currentCartItem._id === currentItem
                         );
+                        console.log(currentCartItem);
                         return (
                           <CartCard
                             title={currentCartItem.name}
@@ -221,7 +227,7 @@ export default function Cart() {
                       disabled={!selectedAddress}
                       onClick={() => showRazorpay()}
                     >
-                      {selectedAddress ? "Make payment" : "Selected an address"}
+                      {selectedAddress ? "Make payment" : "Select an address"}
                     </button>
                   </aside>
                 </>
@@ -238,15 +244,7 @@ export default function Cart() {
             </section>
             <aside className="aside--offers --has-padding">
               <h3>Offers available</h3>
-              <p>Click on the offer to avail.</p>
-              <ul className="offers-list">
-                <li>Up to 3% additional discount on XZ Bank credit card.</li>
-                <li>
-                  Pay with PayPM and get a chance to win up to 100% cashback.
-                </li>
-                <li>10% off up to Rs 1000.</li>
-                <li>Free delivery on orders above Rs 5000.</li>
-              </ul>
+              <p>No offers available at the moment.</p>
             </aside>
           </div>
         </motion.main>
