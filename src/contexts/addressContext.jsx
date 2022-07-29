@@ -10,7 +10,14 @@ export function AddressProvider({ children }) {
   const [selectedAddress, setSelectedAddress] = useState(null);
   const { isLoggedIn } = useAuth();
 
-  useEffect(() => getAddresses(setAddresses), [isLoggedIn]);
+  useEffect(() => {
+    if (isLoggedIn.status) {
+      getAddresses(setAddresses);
+    } else {
+      setAddresses([]);
+      setSelectedAddress(null);
+    }
+  }, [isLoggedIn]);
 
   return (
     <AddressContext.Provider

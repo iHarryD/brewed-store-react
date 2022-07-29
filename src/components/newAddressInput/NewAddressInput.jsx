@@ -1,9 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useAddress } from "../../contexts/addressContext";
 import { addAddress } from "../../services/addressServices";
+import { ButtonLoader } from "../loaders/Loaders";
 import "./css/style.css";
 
 export default function NewAddressInput() {
+  const [isAddingNewAddress, setIsAddingNewAddress] = useState(false);
   const { setAddresses } = useAddress();
   const nameInputRef = useRef(null);
   const phoneNumberInputRef = useRef(null);
@@ -25,8 +27,13 @@ export default function NewAddressInput() {
       state: stateInputRef.current.value,
       zipCode: zipCodeInputRef.current.value,
     };
-    const result = await addAddress(setAddresses, address);
-    console.log(result);
+    await addAddress(
+      (result) => {
+        setAddresses((prev) => [...prev, result.data.data]);
+      },
+      address,
+      setIsAddingNewAddress
+    );
   }
 
   return (
@@ -98,10 +105,11 @@ export default function NewAddressInput() {
         </div>
       </div>
       <button
+        disabled={isAddingNewAddress}
         className="btn --primary-btn --has-hover-overlay"
         onClick={() => addAddressHandler()}
       >
-        Add
+        {isAddingNewAddress ? <ButtonLoader /> : "Add"}
       </button>
     </div>
   );
