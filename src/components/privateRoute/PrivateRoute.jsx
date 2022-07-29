@@ -12,7 +12,7 @@ export function PrivateRoute({ children, isAuthenticated, redirectTo }) {
   ) : (
     <Navigate
       to={redirectTo !== undefined ? redirectTo : "/login"}
-      state={{ comingFrom: location.pathname }}
+      state={{ previousRoute: location.pathname }}
       replace
     />
   );

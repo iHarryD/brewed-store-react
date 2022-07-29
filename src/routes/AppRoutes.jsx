@@ -28,13 +28,21 @@ export default function AppRoutes() {
         <Route
           path="login"
           element={
-            <PrivateRoute children={<LoginPage />} isAuthenticated={!status} />
+            <PrivateRoute
+              children={<LoginPage />}
+              isAuthenticated={!status}
+              redirectTo="/all-products"
+            />
           }
         />
         <Route
           path="signup"
           element={
-            <PrivateRoute children={<SignupPage />} isAuthenticated={!status} />
+            <PrivateRoute
+              children={<SignupPage />}
+              isAuthenticated={!status}
+              redirectTo="/all-products"
+            />
           }
         />
       </Routes>
