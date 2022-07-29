@@ -26,14 +26,22 @@ export function Address({
       <div className="address-btn-container --horizontal-flex --has-gap">
         <button
           className="address-delete-btn btn --icon-btn"
-          onClick={() => deleteAddress(setAddresses, _id)}
+          onClick={() =>
+            deleteAddress((result) => {
+              if (selectedAddress && selectedAddress._id === _id) {
+                setSelectedAddress(null);
+              }
+              setAddresses((prev) =>
+                prev.filter((address) => address._id !== _id)
+              );
+            }, _id)
+          }
         >
           <FontAwesomeIcon icon={faTrash} />
         </button>
         <button
           className="address-select-btn btn --icon-btn"
           onClick={() => {
-            if (selectedAddress) return;
             const selectedAddressDetails = addresses.find(
               (address) => address._id === _id
             );
