@@ -12,23 +12,26 @@ export async function getAddresses(addressSetter) {
   }
 }
 
-export async function addAddress(addressSetter, address) {
+export async function addAddress(successCallback, address, loadingStateSetter) {
   try {
-    const res = await addressAxiosInstance().post("", address);
-    if (Array.isArray(res.data)) {
-      addressSetter(res.data);
+    if (loadingStateSetter) loadingStateSetter(true);
+    const result = await addressAxiosInstance().post("", address);
+    if (successCallback) {
+      successCallback(result);
     }
   } catch (err) {
     console.log(err);
+  } finally {
+    if (loadingStateSetter) loadingStateSetter(false);
   }
 }
 
-export async function deleteAddress(addressSetter, addressID) {
+export async function deleteAddress(successCallback, addressID) {
   try {
-    const res = await addressAxiosInstance().delete(`?addressID=${addressID}`);
-    if (Array.isArray(res.data)) {
-      addressSetter(res.data);
-    }
+    const result = await addressAxiosInstance().delete(
+      `/?addressID=${addressID}`
+    );
+    if (successCallback) successCallback(result);
   } catch (err) {
     console.log(err);
   }

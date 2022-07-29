@@ -50,4 +50,13 @@ export async function moveToWishlist(cartSetter, wishlistSetter, productID) {
   }
 }
 
+export async function emptyCart(successCallback, failureCallback) {
+  try {
+    const result = await cartAxiosInstance().delete("/delete-all");
+    if (successCallback) successCallback(result);
+  } catch (err) {
+    if (failureCallback) failureCallback(err);
+  }
+}
+
 // axios.all [bug: to solve]
