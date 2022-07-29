@@ -183,3 +183,14 @@
 .btn.delete-from-cart-btn:hover {
   background: var(--ACCENT-CLR);
 }
+
+.meta-tag {
+  background: var(--ACCENT-CLR);
+  padding: 0px 10px;
+}
+
+.product-meta-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

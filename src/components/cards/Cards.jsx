@@ -27,6 +27,8 @@ export function ProductCard({
   isInCart,
   cartClickHandler,
   cartSetter,
+  brand,
+  isFlashDeliverable,
 }) {
   const cardHoverAnimations = {
     borderRadius: "14px",
@@ -78,6 +80,12 @@ export function ProductCard({
         />
       </div>
       <div className="card-text-container --verticle-flex --has-padding">
+        <div className="product-meta-tags-container">
+          <span className="meta-tag">{brand}</span>
+          {isFlashDeliverable && (
+            <span className="meta-tag">Flash Delivery</span>
+          )}
+        </div>
         <p className="product-title --bold-500">{title}</p>
         <div>
           <span className="product-current-price --bold-700">

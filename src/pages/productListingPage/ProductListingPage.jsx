@@ -51,6 +51,8 @@ export default function ProductListingPage() {
                 cartClickHandler={
                   isInCart ? () => navigate("/cart") : addToCart
                 }
+                brand={product.brand}
+                isFlashDeliverable={product.flashDeliverable}
               />
             );
           })}
